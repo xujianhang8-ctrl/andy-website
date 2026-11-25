@@ -711,6 +711,7 @@ button { font: inherit; color: inherit; }
 }
 .calc-result .label { font-size: 14px; line-height: 20px; font-weight: 600; }
 .calc-monthly {
+  margin-top: var(--space-3);
   font-family: var(--font-display);
   font-size: clamp(44px, 5vw, 60px);
   line-height: 1;
