@@ -83,11 +83,13 @@
     // Photo or initials
     const initials = (agent.fullName || agent.name || 'A').split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
     $$('[data-agent-initials]').forEach((el) => { el.textContent = initials; });
-    if (agent.photo) {
-      $$('[data-agent-photo]').forEach((el) => {
-        el.innerHTML = `<img src="${esc(agent.photo)}" alt="${esc(agent.fullName || agent.name)}, ${esc(agent.title || '')}" loading="lazy">`;
-      });
-    }
+    $$('[data-agent-photo]').forEach((el) => {
+      const where = el.dataset.agentPhoto;
+      const src = where === 'about' ? (agent.aboutPhoto || agent.photo) : agent.photo;
+      if (!src) return;
+      const cls = agent.photoCutout ? ` class="cutout cutout-${esc(where)}"` : '';
+      el.innerHTML = `<img${cls} src="${esc(src)}" alt="${esc(agent.fullName || agent.name)}, ${esc(agent.title || '')}"${where === 'card' ? '' : ' loading="lazy"'}>`;
+    });
 
     // Bio, languages, areas
     const bio = $('#about-bio');
@@ -95,20 +97,24 @@
     const langs = $('#about-languages');
     if (langs) langs.textContent = (agent.languages || []).join(', ');
     const areas = $('#about-areas');
-    if (areas) areas.innerHTML = (area.neighbourhoods || []).map((n) => `<li class="chip">${esc(n)}</li>`).join('');
+    if (areas) areas.innerHTML = (agent.specialties || area.neighbourhoods || []).map((n) => `<li class="chip">${esc(n)}</li>`).join('');
 
     $$('[data-currency-code]').forEach((el) => { el.textContent = currency; });
     const year = $('#year');
     if (year) year.textContent = new Date().getFullYear();
 
     // Title and description follow the config
-    const who = [agent.fullName || agent.name, agent.title].filter(Boolean).join(' — ');
-    document.title = area.name ? `${who} in ${area.name} | Buy, sell and rent` : who;
+    const role = [agent.agencyShort, agent.title].filter(Boolean).join(' ');
+    const who = [agent.fullName || agent.name, role].filter(Boolean).join(' — ');
+    document.title = area.name ? `${who} in ${area.name}` : who;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) {
-      desc.content = `${agent.fullName || agent.name}, ${agent.title || 'property agent'}${area.name ? ' in ' + area.name : ''}. ` +
-        'Homes for sale and rent, free valuations, and honest advice from first viewing to keys in hand.';
+      desc.content = `${agent.fullName || agent.name}${agent.licence ? ' (' + agent.licence + ')' : ''}, ${role || 'property agent'}${area.name ? ' in ' + area.name : ''}. ` +
+        (C.trackRecord && C.trackRecord.headline ? C.trackRecord.headline + '. ' : '') +
+        ((agent.specialties || []).length ? agent.specialties.join(', ') + '.' : '');
     }
+
+    renderTrackRecord();
 
     // Map: the Embed API with a Place ID when a key is set, otherwise the keyless embed
     const frame = $('#map-frame');
@@ -120,6 +126,61 @@
 
     applyLinks();
     injectStructuredData();
+  }
+
+  /* ---------- Track record ---------- */
+  function trackTotals() {
+    const tr = C.trackRecord || {};
+    const rows = (tr.transactions || []).flatMap((y) => y.projects || []);
+    return {
+      total: rows.reduce((n, r) => n + (Number(r[1]) || 0), 0),
+      projects: new Set(rows.map((r) => r[0])).size,
+      since: Math.min(...(tr.transactions || []).map((y) => y.year))
+    };
+  }
+
+  function renderTrackRecord() {
+    const tr = C.trackRecord || {};
+    const section = $('#track-record');
+    const hasTx = (tr.transactions || []).length > 0;
+    const hasAwards = (tr.awards || []).length > 0;
+    if (!hasTx && !hasAwards) {
+      if (section) section.hidden = true;
+      $$('a[href="#track-record"]').forEach((a) => { (a.closest('li') || a).hidden = true; });
+      return;
+    }
+    const t = trackTotals();
+    $$('[data-tx-total]').forEach((el) => { el.textContent = t.total; });
+    $$('[data-tx-projects]').forEach((el) => { el.textContent = t.projects; });
+
+    const stats = $('#track-stats');
+    if (stats) {
+      const top = /top ([\d.]+%)/i.exec(tr.headline || '');
+      const of = /of ([\d,]+ [^,.]+)/i.exec(tr.headline || '');
+      stats.innerHTML = [
+        hasTx ? [t.total, `transactions since ${t.since}`] : null,
+        hasTx ? [t.projects, t.projects === 1 ? 'project' : 'projects'] : null,
+        top ? ['Top ' + top[1], of ? `of ${of[1]}` : 'ranking'] : null
+      ].filter(Boolean).map(([n, label]) => `<div class="stat"><dt>${esc(label)}</dt><dd>${esc(n)}</dd></div>`).join('');
+    }
+
+    const awards = $('#award-list');
+    if (awards) {
+      awards.innerHTML = (tr.awards || []).map((a) => `<li>${icon('star')}<div><p class="award-title">${esc(a.title)}</p>${a.detail ? `<p class="small muted">${esc(a.detail)}</p>` : ''}</div></li>`).join('');
+      awards.closest('.track-card').hidden = !hasAwards;
+    }
+
+    const years = $('#tx-years');
+    if (years) {
+      years.innerHTML = (tr.transactions || []).slice().sort((a, b) => b.year - a.year).map((y) => {
+        const sum = (y.projects || []).reduce((n, r) => n + (Number(r[1]) || 0), 0);
+        return `<div class="tx-year">
+          <h4><span>${esc(y.year)}</span><span class="small muted">${sum} ${sum === 1 ? 'transaction' : 'transactions'}</span></h4>
+          <ul>${(y.projects || []).map(([name, n]) => `<li><span>${esc(name)}</span><span class="tx-count" aria-label="${esc(n)} transactions">${esc(n)}</span></li>`).join('')}</ul>
+        </div>`;
+      }).join('');
+      years.closest('.track-card').hidden = !hasTx;
+    }
   }
 
   /* ---------- Structured data: tells Google this site and the Business Profile are the same agent ---------- */
@@ -145,7 +206,11 @@
         postalCode: addr.postalCode || undefined,
         addressCountry: addr.country || undefined
       } : undefined,
-      parentOrganization: agent.agency ? { '@type': 'RealEstateAgent', name: agent.agency } : undefined,
+      parentOrganization: agent.agency ? { '@type': 'RealEstateAgent', name: agent.agency, identifier: agent.agencyLicence || undefined } : undefined,
+      identifier: agent.licence || undefined,
+      slogan: agent.motto || undefined,
+      knowsAbout: (agent.specialties || []).length ? agent.specialties : undefined,
+      award: C.trackRecord && (C.trackRecord.awards || []).length ? C.trackRecord.awards.map((a) => a.title) : undefined,
       hasMap: google.profileUrl || undefined,
       sameAs: [google.profileUrl, C.social && C.social.facebook, C.social && C.social.instagram, C.social && C.social.linkedin].filter(Boolean)
     };
@@ -201,8 +266,10 @@
       <rect class="ill-trunk" x="334" y="204" width="8" height="44" rx="3"/>
       <circle class="ill-tree" cx="338" cy="190" r="26"/>`
   };
+  const DRAWING_FOR = { HDB: 'Apartment', EC: 'Apartment', Condo: 'Apartment', Landed: 'Townhouse' };
+  const TYPE_LABEL = { EC: 'Executive Condo', HDB: 'HDB flat' };
   const illustration = (type) =>
-    `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${ILLUSTRATION[type] || ILLUSTRATION.House}</svg>`;
+    `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${ILLUSTRATION[DRAWING_FOR[type] || type] || ILLUSTRATION.House}</svg>`;
 
   /* ---------- Listings ---------- */
   const isClosed = (l) => l.status === 'sold' || l.status === 'let';
@@ -219,7 +286,7 @@
   const tagsFor = (l) => badgeFor(l) + (l.sample ? '<span class="badge badge-sample">Sample</span>' : '');
   const priceFor = (l) => money(l.price) + (l.mode === 'rent' ? ' <small>/ month</small>' : '');
   const factsFor = (l, withType) => [
-    withType ? `<li>${icon('home')}${esc(l.type)}</li>` : '',
+    withType ? `<li>${icon('home')}${esc(TYPE_LABEL[l.type] || l.type)}</li>` : '',
     l.beds ? `<li>${icon('bed')}${l.beds} bed</li>` : '',
     l.baths ? `<li>${icon('bath')}${l.baths} bath</li>` : '',
     l.size ? `<li>${icon('area')}${num(l.size)} ${esc(C.areaUnit || 'sq ft')}</li>` : ''
@@ -391,7 +458,7 @@
   }
 
   function prefillEnquiry(l) {
-    setInterest(l.mode === 'rent' ? 'Renting' : 'Buying');
+    setInterest(l.mode === 'rent' ? 'Renting' : l.type === 'EC' ? 'Executive Condo' : 'Buying');
     const msg = $('#cf-message');
     msg.value = isClosed(l)
       ? `I saw "${l.title}" in ${l.location}. Do you have anything similar coming up?`

@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Andy — Property Agent | Buy, sell and rent with a local agent</title>
-  <meta name="description" content="Andy is a local property agent. Homes for sale and rent, free valuations, and honest advice from first viewing to keys in hand.">
+  <title>Andy Ea — PropNex Property Advisor | Executive Condos, HDB and private property in Singapore</title>
+  <meta name="description" content="Andy Ea (CEA R066640H) is a PropNex property advisor in Singapore, ranked in the top 0.1% of 14,000 agents. Executive Condos, HDB, private, commercial and industrial property.">
   <meta name="theme-color" content="#1d5a47" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111714" media="(prefers-color-scheme: dark)">
   <!-- Google Search Console: paste your verification tag here, then remove these comment marks.
   <meta name="google-site-verification" content="PASTE-YOUR-CODE">
   -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Andy — Property Agent">
-  <meta property="og:description" content="Homes for sale and rent, free valuations, and honest advice from a local agent.">
+  <meta property="og:title" content="Andy Ea — PropNex Property Advisor, Singapore">
+  <meta property="og:description" content="Your property partner for Singapore Executive Condos. Ranked in the top 0.1% of 14,000 PropNex agents.">
+  <meta property="og:image" content="images/andy-seated.webp">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/Figtree-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Newsreader-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -52,14 +53,14 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="wordmark" href="#top" aria-label="Home">
-        <span class="wordmark-name" data-cfg="agent.name">Andy</span>
-        <span class="wordmark-role" data-cfg="agent.title">Property Agent</span>
+        <span class="wordmark-name" data-cfg="agent.name">Andy Ea</span>
+        <span class="wordmark-role" data-cfg="agent.agencyShort">PropNex</span>
       </a>
       <nav class="nav" id="site-nav" aria-label="Main">
         <ul>
+          <li><a href="#track-record">Track record</a></li>
           <li><a href="#listings">Listings</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#calculator">Calculator</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -86,15 +87,15 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span data-cfg="agent.title">Property Agent</span> · <span data-cfg="area.name">Your City</span></p>
-          <h1 class="display-xl" id="hero-title">Buy, sell or rent with someone who knows the street.</h1>
+          <p class="eyebrow"><span data-cfg="agent.agencyShort">PropNex</span> · <span data-cfg="agent.licence">CEA Reg. No. R066640H</span></p>
+          <h1 class="display-xl" id="hero-title">Your property partner for Singapore Executive Condos.</h1>
           <p class="body-lg muted">
-            I'm <span data-cfg="agent.name">Andy</span>, a property agent in <span data-cfg="area.name">Your City</span>.
-            I give honest prices, answer my phone, and stay with you from the first viewing to the day you get the keys.
+            I'm Andy Ea. My own first home was an EC, and since 2024 I've completed <span data-tx-total>43</span> transactions across <span data-tx-projects>7</span> projects.
+            Buying, selling or investing, I'll show you the numbers and stay with you until you collect the keys.
           </p>
           <div class="hero-ctas">
-            <a class="btn btn-primary btn-lg" href="#listings">See current listings</a>
-            <a class="btn btn-secondary btn-lg" href="#contact" data-interest="Free valuation">Get a free valuation</a>
+            <a class="btn btn-primary btn-lg" href="#contact" data-interest="Executive Condo">Book a free consultation</a>
+            <a class="btn btn-secondary btn-lg" href="#track-record">See my track record</a>
           </div>
           <a class="google-chip" data-link="google" target="_blank" rel="noopener" id="google-chip">
             <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
@@ -104,12 +105,12 @@
         </div>
 
         <aside class="card agent-card" aria-label="Contact card">
-          <div class="agent-photo" data-agent-photo>
-            <span class="agent-initials" data-agent-initials aria-hidden="true">A</span>
+          <div class="agent-photo" data-agent-photo="card">
+            <span class="agent-initials" data-agent-initials aria-hidden="true">AE</span>
           </div>
           <div class="agent-card-body">
-            <p class="title" data-cfg="agent.fullName">Andy</p>
-            <p class="small muted"><span data-cfg="agent.title">Property Agent</span><span data-cfg-sep="agent.agency">, </span><span data-cfg="agent.agency"></span></p>
+            <p class="title" data-cfg="agent.fullName">Andy Ea</p>
+            <p class="small muted"><span data-cfg="agent.title">Property Advisor</span><span data-cfg-sep="agent.agencyShort">, </span><span data-cfg="agent.agencyShort"></span></p>
             <p class="small muted" data-cfg="agent.licence"></p>
             <div class="agent-card-actions">
               <a class="icon-btn" data-link="phone" aria-label="Call"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></a>
@@ -132,9 +133,10 @@
             <label for="hs-type">Property type</label>
             <select class="select" id="hs-type" name="type">
               <option value="">Any type</option>
-              <option>House</option>
-              <option>Apartment</option>
-              <option>Townhouse</option>
+              <option value="HDB">HDB</option>
+              <option value="EC">Executive Condo</option>
+              <option value="Condo">Condo</option>
+              <option value="Landed">Landed</option>
             </select>
           </div>
           <div class="field">
@@ -151,6 +153,29 @@
             <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Search homes</span>
           </button>
         </form>
+      </div>
+    </section>
+
+    <!-- Track record -->
+    <section class="section section-alt" id="track-record" aria-labelledby="track-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Track record</p>
+            <h2 class="display-lg" id="track-title" data-cfg="trackRecord.headline">Ranked in the top 0.1% of 14,000 PropNex agents</h2>
+          </div>
+        </div>
+        <dl class="stats" id="track-stats"></dl>
+        <div class="track-grid">
+          <div class="card track-card">
+            <h3 class="title">Awards and recognition</h3>
+            <ul class="award-list" id="award-list"></ul>
+          </div>
+          <div class="card track-card">
+            <h3 class="title">Transactions by project</h3>
+            <div class="tx-years" id="tx-years"></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -176,9 +201,10 @@
             <label for="f-type">Type</label>
             <select class="select" id="f-type" name="type">
               <option value="">Any type</option>
-              <option>House</option>
-              <option>Apartment</option>
-              <option>Townhouse</option>
+              <option value="HDB">HDB</option>
+              <option value="EC">Executive Condo</option>
+              <option value="Condo">Condo</option>
+              <option value="Landed">Landed</option>
             </select>
           </div>
           <div class="field">
@@ -227,47 +253,47 @@
         </div>
         <div class="service-grid">
           <article class="card service-card">
+            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
+            <h3 class="title">Executive Condos, start to finish</h3>
+            <p class="muted">Eligibility, grants, ballot day, unit selection and the payment schedule. My own first home was an EC, so I've been where you are.</p>
+            <a href="#contact" data-interest="Executive Condo">Ask about ECs</a>
+          </article>
+          <article class="card service-card">
             <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-sign"/></svg></span>
-            <h3 class="title">Sell for the right price</h3>
-            <p class="muted">A valuation based on what's actually sold nearby, proper photos, and viewings I attend myself. You get feedback after every one.</p>
+            <h3 class="title">Sell for the best price</h3>
+            <p class="muted">A pricing plan based on recent transactions, marketing that reaches serious buyers, and firm negotiation. I've achieved record prices for sellers.</p>
             <a href="#contact" data-interest="Selling">Talk about selling</a>
           </article>
           <article class="card service-card">
-            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
-            <h3 class="title">Find a home that fits</h3>
-            <p class="muted">Tell me your budget and must-haves. I'll shortlist homes, including ones not yet advertised, and help you negotiate.</p>
+            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <h3 class="title">Buy with the numbers in front of you</h3>
+            <p class="muted">I present live on iPad with PropNex's Investment Suite: charts, comparisons and tower views, so you see the data before you commit.</p>
             <a href="#contact" data-interest="Buying">Start your search</a>
           </article>
           <article class="card service-card">
             <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span>
-            <h3 class="title">Rent or let, minus the hassle</h3>
-            <p class="muted">Tenants get viewings that fit around work. Landlords get referenced tenants, clear agreements and a proper check-in report.</p>
-            <a href="#contact" data-interest="Renting">Ask about renting</a>
-          </article>
-          <article class="card service-card">
-            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
-            <h3 class="title">Free valuation, no pressure</h3>
-            <p class="muted">Curious what your home is worth? I'll visit, compare recent sales and give you a written figure. No obligation to list.</p>
-            <a href="#contact" data-interest="Free valuation">Book a valuation</a>
+            <h3 class="title">Commercial and industrial</h3>
+            <p class="muted">I own commercial and industrial units myself, so I can help you weigh up yield, tenure and financing for your first or next one.</p>
+            <a href="#contact" data-interest="Commercial / industrial">Discuss an investment</a>
           </article>
         </div>
 
-        <ol class="steps" aria-label="How selling with me works">
+        <ol class="steps" aria-label="How buying an EC with me works">
           <li>
-            <h3>Valuation visit</h3>
-            <p class="muted small">We walk through the home together and agree a realistic asking price.</p>
+            <h3>Eligibility and budget</h3>
+            <p class="muted small">We confirm your eligibility, grants, CPF and loan limits, so you know your real budget.</p>
           </li>
           <li>
-            <h3>Prepare and list</h3>
-            <p class="muted small">Photos, a floor plan and a listing that describes the home accurately.</p>
+            <h3>Shortlist and showflats</h3>
+            <p class="muted small">I shortlist launches that fit and walk you through stacks, layouts and views with live data.</p>
           </li>
           <li>
-            <h3>Viewings and offers</h3>
-            <p class="muted small">I host viewings, check buyers can proceed, and bring every offer to you in writing.</p>
+            <h3>Ballot and booking</h3>
+            <p class="muted small">I prepare you for ballot day and help you pick the right unit when your number is called.</p>
           </li>
           <li>
-            <h3>Through to completion</h3>
-            <p class="muted small">I chase lawyers, lenders and buyers so the sale doesn't stall.</p>
+            <h3>Through to keys</h3>
+            <p class="muted small">Loan, payment schedule and handover: I stay with you until you collect your keys.</p>
           </li>
         </ol>
       </div>
@@ -287,21 +313,21 @@
             <div class="field field-wide">
               <label for="c-price">Property price</label>
               <div class="input-affix">
-                <input class="input" id="c-price" name="price" type="number" inputmode="numeric" min="0" step="1000" value="500000">
+                <input class="input" id="c-price" name="price" type="number" inputmode="numeric" min="0" step="10000" value="1500000">
                 <span class="affix" data-currency-code>USD</span>
               </div>
             </div>
             <div class="field">
               <label for="c-deposit">Down payment</label>
               <div class="input-affix">
-                <input class="input" id="c-deposit" name="deposit" type="number" inputmode="decimal" min="0" max="100" step="1" value="20">
+                <input class="input" id="c-deposit" name="deposit" type="number" inputmode="decimal" min="0" max="100" step="1" value="25">
                 <span class="affix">%</span>
               </div>
             </div>
             <div class="field">
               <label for="c-rate">Interest rate</label>
               <div class="input-affix">
-                <input class="input" id="c-rate" name="rate" type="number" inputmode="decimal" min="0" max="25" step="0.05" value="4.5">
+                <input class="input" id="c-rate" name="rate" type="number" inputmode="decimal" min="0" max="25" step="0.05" value="2.8">
                 <span class="affix">% / yr</span>
               </div>
             </div>
@@ -311,8 +337,8 @@
                 <option value="10">10 years</option>
                 <option value="15">15 years</option>
                 <option value="20">20 years</option>
-                <option value="25" selected>25 years</option>
-                <option value="30">30 years</option>
+                <option value="25">25 years</option>
+                <option value="30" selected>30 years</option>
                 <option value="35">35 years</option>
               </select>
             </div>
@@ -330,7 +356,7 @@
             <a class="btn" href="#contact" data-interest="Buying">Talk it through with me</a>
           </div>
         </form>
-        <p class="small muted calc-note">An estimate only, for a repayment loan at a fixed rate. Your lender will confirm the real figures, fees and what you can borrow.</p>
+        <p class="small muted calc-note">An estimate only, for a repayment loan at a fixed rate. Your bank or HDB will confirm the real figures, and loan limits (LTV, TDSR, MSR) decide what you can borrow.</p>
       </div>
     </section>
 
@@ -338,21 +364,27 @@
     <section class="section section-alt" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
         <div class="card about-photo">
-          <div class="agent-photo" data-agent-photo>
-            <span class="agent-initials" data-agent-initials aria-hidden="true">A</span>
+          <div class="agent-photo" data-agent-photo="about">
+            <span class="agent-initials" data-agent-initials aria-hidden="true">AE</span>
           </div>
         </div>
         <div class="about-copy">
           <p class="eyebrow">About me</p>
-          <h2 class="display-lg" id="about-title">Hi, I'm <span data-cfg="agent.name">Andy</span>.</h2>
+          <h2 class="display-lg" id="about-title">Hi, I'm <span data-cfg="agent.name">Andy Ea</span>.</h2>
           <div class="bio body-lg" id="about-bio"></div>
+          <figure class="pull-quote" data-cfg-group="agent.quote">
+            <blockquote data-cfg="agent.quote"></blockquote>
+            <figcaption>— <span data-cfg="agent.fullName">Andy Ea</span></figcaption>
+          </figure>
           <dl class="about-facts">
+            <div data-cfg-group="agent.motto"><dt>Motto</dt><dd>“<span data-cfg="agent.motto"></span>”</dd></div>
+            <div data-cfg-group="agent.vision"><dt>Vision</dt><dd data-cfg="agent.vision"></dd></div>
             <div data-cfg-group="agent.agency"><dt>Agency</dt><dd data-cfg="agent.agency"></dd></div>
             <div data-cfg-group="agent.licence"><dt>Registration</dt><dd data-cfg="agent.licence"></dd></div>
             <div data-cfg-group="agent.languages"><dt>Languages</dt><dd id="about-languages"></dd></div>
             <div data-cfg-group="contact.hours"><dt>Hours</dt><dd data-cfg="contact.hours"></dd></div>
-            <div class="field-wide" style="grid-column: 1 / -1" data-cfg-group="area.neighbourhoods">
-              <dt>Areas I cover</dt>
+            <div style="grid-column: 1 / -1" data-cfg-group="agent.specialties">
+              <dt>Property I handle</dt>
               <dd><ul class="chips" id="about-areas"></ul></dd>
             </div>
           </dl>
@@ -397,7 +429,7 @@
           <div>
             <p class="eyebrow">Contact</p>
             <h2 class="display-lg" id="contact-title">Let's talk about your move</h2>
-            <p class="muted">Send a message and I'll reply the same working day. Prefer to talk? Call or message me directly.</p>
+            <p class="muted">Ask me a question, book a consultation, or get a free valuation. Prefer to talk? Call or WhatsApp me directly.</p>
           </div>
         </div>
 
@@ -418,10 +450,11 @@
             <div class="field">
               <label for="cf-interest">I'm interested in</label>
               <select class="select" id="cf-interest" name="interest">
+                <option>Executive Condo</option>
                 <option>Buying</option>
                 <option>Selling</option>
                 <option>Renting</option>
-                <option>Letting my property</option>
+                <option>Commercial / industrial</option>
                 <option>Free valuation</option>
                 <option>Something else</option>
               </select>
@@ -485,15 +518,17 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="wordmark" href="#top">
-            <span class="wordmark-name" data-cfg="agent.name">Andy</span>
-            <span class="wordmark-role" data-cfg="agent.title">Property Agent</span>
+            <span class="wordmark-name" data-cfg="agent.name">Andy Ea</span>
+            <span class="wordmark-role" data-cfg="agent.agencyShort">PropNex</span>
           </a>
-          <p class="small muted"><span data-cfg="agent.agency"></span><span data-cfg-sep="agent.licence"> · </span><span data-cfg="agent.licence"></span></p>
+          <p class="small muted"><span data-cfg="agent.fullName">Andy Ea</span><span data-cfg-sep="agent.licence"> · </span><span data-cfg="agent.licence"></span></p>
+          <p class="small muted"><span data-cfg="agent.agency"></span><span data-cfg-sep="agent.agencyLicence"> · </span><span data-cfg="agent.agencyLicence"></span></p>
           <p class="small muted" data-address></p>
         </div>
         <div>
           <h2>Explore</h2>
           <ul>
+            <li><a href="#track-record">Track record</a></li>
             <li><a href="#listings">Listings</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#calculator">Mortgage calculator</a></li>
@@ -514,7 +549,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© <span id="year"></span> <span data-cfg="agent.fullName">Andy</span>. All rights reserved.</p>
+        <p>© <span id="year"></span> <span data-cfg="agent.fullName">Andy Ea</span>. All rights reserved.</p>
         <p>Listing details are a guide only and do not form part of any contract.</p>
       </div>
     </div>

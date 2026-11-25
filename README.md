@@ -1,32 +1,32 @@
-# Andy — Property Agent website
+# Andy Ea — PropNex Property Advisor website
 
-A one-page website for a property agent: listings with filters and share links, services, a mortgage calculator, an about section, Google reviews, a contact form, a map, and a call/WhatsApp bar on phones. It's plain HTML, CSS and JavaScript. There's no build step and nothing to install, and it runs on any static host (GitHub Pages, Netlify, Cloudflare Pages).
+The website for Andy Ea (CEA R066640H), PropNex Property Advisor in Singapore, specialising in Executive Condos. It's a single page with a track record of awards and transactions by project, listings with filters and share links, services, a mortgage calculator, an About section, Google reviews, a contact form, a map, and a call/WhatsApp bar on phones. It's plain HTML, CSS and JavaScript. There's no build step and nothing to install, and it runs on any static host (GitHub Pages, Netlify, Cloudflare Pages).
 
 ```
 index.html          the page
 css/styles.css      all styling (colours and sizes are the tokens at the top)
-js/config.js        ← your details: name, phone, Google links, area, currency
+js/config.js        ← details: name, CEA numbers, phone, awards, transactions, Google links
 js/listings.js      ← your properties
 js/main.js          page behaviour (no need to edit)
 fonts/              Newsreader + Figtree, self-hosted (SIL Open Font License)
-images/             favicon, your photo, listing photos
+images/             favicon, Andy's portraits (andy-seated.webp, andy-full.webp), listing photos
 ```
 
-## 1. Make it yours (10 minutes)
+## 1. Keep it up to date
 
-Open **`js/config.js`** and fill in:
+Andy's details from his "About Me" deck are already in **`js/config.js`**:
 
-| Setting | What to put |
+| Setting | What it holds |
 | --- | --- |
-| `agent.name`, `fullName`, `agency`, `licence` | Shown in the logo, the contact card and the footer |
-| `agent.photo` | Save a portrait as `images/andy.jpg` and set `'images/andy.jpg'`. Without one, the page shows your initials |
-| `agent.bio` | One or two short paragraphs in your own words |
+| `agent.name`, `title`, `agency`, `agencyLicence`, `licence` | Name, PropNex, the agency's CEA licence and Andy's CEA registration. They appear in the hero, on the contact card and in the footer, as CEA's advertising guidelines require |
+| `agent.photo`, `agent.aboutPhoto` | Portraits for the contact card and About. These are cut-outs taken from the deck; higher-resolution originals will look sharper |
+| `agent.bio`, `motto`, `vision`, `quote`, `specialties` | The About section |
+| `trackRecord.awards`, `trackRecord.transactions` | The Track record section. Add a project as `['Name', count]` under its year, and the totals (43 transactions, 7 projects) update themselves |
 | `contact.phone` / `phoneDisplay` / `whatsapp` / `email` | Every Call, WhatsApp and Email button uses these |
-| `contact.address` | Your office address, used on the map and for Google |
-| `area.name`, `area.neighbourhoods` | Used in the headline and the "Areas I cover" list |
-| `locale`, `currency`, `areaUnit` | e.g. `'en-GB'`, `'GBP'`, `'sq ft'` or `'en-SG'`, `'SGD'`, `'m²'` |
+| `contact.hours` | Empty, so it's hidden. Add opening hours if you want them shown |
+| `locale`, `currency`, `areaUnit` | `en-SG`, `SGD`, `sq ft` |
 
-Then open **`js/listings.js`**, replace the six sample homes with your own, and remove `sample: true` from each. Put photos in `images/listings/` and list them in each home's `images: [...]`.
+Then open **`js/listings.js`**, replace the six sample homes with real ones, and remove `sample: true` from each. Types are `HDB`, `EC`, `Condo` and `Landed`. Put photos in `images/listings/` and list them in each home's `images: [...]`.
 
 ## 2. Link the website and your Google Business Profile
 
@@ -54,7 +54,9 @@ To receive messages without the visitor's email app opening, create a free form 
 
 ## 4. Put it online
 
-**GitHub Pages (free):** in this repository, go to **Settings → Pages**, then under *Build and deployment* choose **Deploy from a branch**, pick the branch and `/ (root)`, and save. The site appears at `https://<your-username>.github.io/andy-website/` within a minute or two. To use your own domain (e.g. `andyproperty.com`), enter it under **Custom domain** and follow GitHub's DNS instructions.
+Andy already owns **aerealtor.com** (set as `siteUrl`). Point that domain at whichever host you use below.
+
+**GitHub Pages (free):** in this repository, go to **Settings → Pages**, then under *Build and deployment* choose **Deploy from a branch**, pick the branch and `/ (root)`, and save. The site appears at `https://<your-username>.github.io/andy-website/` within a minute or two. To use aerealtor.com, enter `www.aerealtor.com` under **Custom domain** and follow GitHub's DNS instructions.
 
 **Netlify / Cloudflare Pages:** connect this repository. There's no build command, and the publish directory is the root.
 
