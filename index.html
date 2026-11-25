@@ -429,7 +429,7 @@
           <div>
             <p class="eyebrow">Contact</p>
             <h2 class="display-lg" id="contact-title">Let's talk about your move</h2>
-            <p class="muted">Ask me a question, book a consultation, or get a free valuation. Prefer to talk? Call or WhatsApp me directly.</p>
+            <p class="muted">Ask me a question, book a consultation, or get a free valuation. Fill this in and it opens WhatsApp with your message ready to send to me. Prefer to talk? Just call.</p>
           </div>
         </div>
 
@@ -440,14 +440,10 @@
               <input class="input" id="cf-name" name="name" autocomplete="name" required>
             </div>
             <div class="field">
-              <label for="cf-phone">Phone <span class="muted">(optional)</span></label>
-              <input class="input" id="cf-phone" name="phone" type="tel" autocomplete="tel">
+              <label for="cf-email">Email <span class="muted">(optional)</span></label>
+              <input class="input" id="cf-email" name="email" type="email" autocomplete="email">
             </div>
-            <div class="field">
-              <label for="cf-email">Email</label>
-              <input class="input" id="cf-email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div class="field">
+            <div class="field field-wide">
               <label for="cf-interest">I'm interested in</label>
               <select class="select" id="cf-interest" name="interest">
                 <option>Executive Condo</option>
@@ -463,17 +459,13 @@
               <label for="cf-message">Message</label>
               <textarea class="textarea" id="cf-message" name="message" required placeholder="What are you looking for, or what would you like to know?"></textarea>
             </div>
-            <div class="hp" aria-hidden="true">
-              <label for="cf-company">Leave this empty</label>
-              <input id="cf-company" name="company" tabindex="-1" autocomplete="off">
-            </div>
             <div class="form-footer">
               <button class="btn btn-primary btn-lg" type="submit">
-                <span>Send message</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>Send on WhatsApp</span>
               </button>
               <p class="form-status" id="form-status" role="status"></p>
             </div>
-            <p class="small muted field-wide">I'll only use your details to reply to this enquiry.</p>
+            <p class="small muted field-wide">This opens WhatsApp with your message filled in. Nothing is sent until you tap send, and your number reaches only me.</p>
           </form>
 
           <div class="contact-side">

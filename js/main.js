@@ -14,6 +14,7 @@
   const get = (path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), C);
   const isEmpty = (v) => v == null || v === '' || (Array.isArray(v) && v.length === 0);
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const firstName = () => String(agent.name || agent.fullName || '').split(' ')[0];
   const icon = (name) => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 
   const locale = C.locale || 'en-US';
@@ -43,7 +44,7 @@
     phone: () => (contact.phone ? 'tel:' + digits(contact.phone) : null),
     whatsapp: () => (contact.whatsapp
       ? 'https://wa.me/' + String(contact.whatsapp).replace(/\D/g, '') + '?text=' +
-        encodeURIComponent(`Hi ${agent.name || ''}, I found you through your website.`)
+        encodeURIComponent(`Hi ${firstName()}, I found you through your website.`)
       : null),
     email: () => (contact.email ? 'mailto:' + contact.email : null),
     google: () => googleProfileUrl,
@@ -475,8 +476,19 @@
     if (tone) statusEl.dataset.tone = tone; else delete statusEl.dataset.tone;
   }
 
+  // Enquiries go to Andy's WhatsApp: the form opens a chat with the message already written.
+  const waNumber = () => String(contact.whatsapp || contact.phone || '').replace(/\D/g, '');
+  const siteName = () => (C.siteUrl || location.host || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '');
+
+  function enquiryText(data) {
+    const lines = [`Hi ${firstName()}, this is ${data.name.trim()}.`, `I'm interested in: ${data.interest}`, '', data.message.trim()];
+    if (data.email && data.email.trim()) lines.push('', `Email: ${data.email.trim()}`);
+    lines.push('', `(Sent from ${siteName() || 'your website'})`);
+    return lines.join('\n');
+  }
+
   if (form) {
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
@@ -485,36 +497,11 @@
         return;
       }
       const data = Object.fromEntries(new FormData(form));
-      if (data.company) return; // spam trap
-      delete data.company;
-
-      const endpoint = C.form && C.form.endpoint;
-      if (endpoint) {
-        const btn = form.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        say('Sending…');
-        try {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({ ...data, _subject: `${data.interest} enquiry from ${data.name}` })
-          });
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          form.reset();
-          say(`Thanks, ${data.name.split(' ')[0]}. Your message is with me and I'll reply soon.`, 'ok');
-        } catch (err) {
-          say(`That didn't send. Please email ${contact.email || 'me'} or call ${contact.phoneDisplay || ''}.`, 'error');
-        } finally {
-          btn.disabled = false;
-        }
-        return;
-      }
-
-      // No form service set: open the visitor's email app with everything filled in.
-      const subject = `${data.interest} enquiry from ${data.name}`;
-      const body = `${data.message}\n\n— ${data.name}\n${data.email}${data.phone ? '\n' + data.phone : ''}`;
-      window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      say(`Your email app should open with the message ready to send. If it doesn't, email ${contact.email}.`, 'ok');
+      const url = `https://wa.me/${waNumber()}?text=${encodeURIComponent(enquiryText(data))}`;
+      // A new tab keeps the site open on desktop; on phones wa.me hands over to the WhatsApp app.
+      const win = window.open(url, '_blank');
+      if (win) win.opener = null; else window.location.href = url;
+      say(`WhatsApp should now be open with your message ready. Tap send and it comes straight to me. If nothing opened, message me on ${contact.phoneDisplay || '+' + waNumber()}.`, 'ok');
     });
   }
 

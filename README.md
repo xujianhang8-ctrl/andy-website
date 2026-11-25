@@ -48,9 +48,7 @@ Until `profileUrl` is set, the Google buttons fall back to a Google Maps search 
 
 ## 3. Receive enquiries
 
-With no extra setup, the contact form opens the visitor's email app with their message already written, addressed to `contact.email`.
-
-To receive messages without the visitor's email app opening, create a free form at [Formspree](https://formspree.io) (or Basin or Getform), and paste its endpoint into `form.endpoint` in `config.js`.
+Enquiries go to Andy's WhatsApp. When a visitor submits the contact form, WhatsApp opens (the app on phones, WhatsApp Web or desktop on computers) with a chat to `contact.whatsapp` and the enquiry already written: their name, what they're interested in, their message and, if given, their email. They tap send, and it arrives in Andy's WhatsApp from their own number, so he can reply straight away. Nothing goes by email, and there's no form service to set up.
 
 ## 4. Put it online
 

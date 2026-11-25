@@ -53,7 +53,7 @@ window.SITE_CONFIG = {
   contact: {
     phone: '+6597317111',               // Digits with country code, used for the Call buttons
     phoneDisplay: '+65 9731 7111',      // How the number is written on the page
-    whatsapp: '6597317111',             // Country code + number, digits only. '' hides WhatsApp
+    whatsapp: '6597317111',             // Country code + number, digits only. The contact form sends enquiries here
     email: 'andyeabiz@gmail.com',
     hours: '',                          // e.g. 'Daily, 9am–9pm'. '' hides it
     address: {
@@ -83,12 +83,6 @@ window.SITE_CONFIG = {
     mapsQuery: 'Andy Ea PropNex Singapore',
     placeId: '',
     mapsApiKey: ''
-  },
-
-  // Optional: paste a form endpoint (Formspree, Basin, Getform…) to receive enquiries by email
-  // without the visitor's email app opening. e.g. 'https://formspree.io/f/abcdwxyz'
-  form: {
-    endpoint: ''
   },
 
   social: {
