@@ -116,6 +116,7 @@
     }
 
     renderTrackRecord();
+    renderPress();
 
     // Map: the Embed API with a Place ID when a key is set, otherwise the keyless embed
     const frame = $('#map-frame');
@@ -184,6 +185,27 @@
     }
   }
 
+  /* ---------- In the press ---------- */
+  function renderPress() {
+    const list = $('#press-list');
+    const items = C.press || [];
+    if (!items.length) {
+      const section = $('#press');
+      if (section) section.hidden = true;
+      $$('a[href="#press"]').forEach((a) => { (a.closest('li') || a).hidden = true; });
+      return;
+    }
+    if (!list) return;
+    const fmtDate = (d) => { try { return new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(d + 'T00:00:00')); } catch (e) { return d; } };
+    list.innerHTML = items.map((a) => `
+      <article class="card press-card">
+        <p class="press-meta"><span class="press-outlet">${esc(a.outlet)}</span><span class="small muted">${[a.date ? fmtDate(a.date) : '', a.author ? 'by ' + esc(a.author) : ''].filter(Boolean).join(' · ')}</span></p>
+        <h3 class="press-title"><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.title)}</a></h3>
+        ${(a.quotes || []).length ? `<div class="press-quotes">${a.quotes.map((q) => `<blockquote>${esc(q)}</blockquote>`).join('')}</div>` : ''}
+        <a class="btn btn-secondary" href="${esc(a.url)}" target="_blank" rel="noopener"><span>Read the article on ${esc(a.outlet)}</span>${icon('external')}</a>
+      </article>`).join('');
+  }
+
   /* ---------- Structured data: tells Google this site and the Business Profile are the same agent ---------- */
   function injectStructuredData() {
     const base = C.siteUrl || location.href.split('#')[0];
@@ -212,6 +234,11 @@
       slogan: agent.motto || undefined,
       knowsAbout: (agent.specialties || []).length ? agent.specialties : undefined,
       award: C.trackRecord && (C.trackRecord.awards || []).length ? C.trackRecord.awards.map((a) => a.title) : undefined,
+      subjectOf: (C.press || []).length ? C.press.map((a) => ({
+        '@type': 'NewsArticle', headline: a.title, url: a.url, datePublished: a.date || undefined,
+        author: a.author ? { '@type': 'Person', name: a.author } : undefined,
+        publisher: { '@type': 'Organization', name: a.outlet }
+      })) : undefined,
       hasMap: google.profileUrl || undefined,
       sameAs: [google.profileUrl, C.social && C.social.facebook, C.social && C.social.instagram, C.social && C.social.linkedin].filter(Boolean)
     };

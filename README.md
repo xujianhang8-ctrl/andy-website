@@ -1,6 +1,6 @@
 # Andy Ea — PropNex Property Advisor website
 
-The website for Andy Ea (CEA R066640H), PropNex Property Advisor in Singapore, specialising in Executive Condos. It's a single page with a track record of awards and transactions by project, listings with filters and share links, services, a mortgage calculator, an About section, Google reviews, a contact form, a map, and a call/WhatsApp bar on phones. It's plain HTML, CSS and JavaScript. There's no build step and nothing to install, and it runs on any static host (GitHub Pages, Netlify, Cloudflare Pages).
+The website for Andy Ea (CEA R066640H), PropNex Property Advisor in Singapore, specialising in Executive Condos. It's a single page with a track record of awards and transactions by project, an asset progression case study, press coverage, listings with filters and share links, services, a mortgage calculator, an About section, Google reviews, a contact form, a map, and a call/WhatsApp bar on phones. It's plain HTML, CSS and JavaScript. There's no build step and nothing to install, and it runs on any static host (GitHub Pages, Netlify, Cloudflare Pages).
 
 ```
 index.html          the page
@@ -14,13 +14,15 @@ images/             favicon, Andy's portraits (andy-seated.webp, andy-full.webp)
 
 ## 1. Keep it up to date
 
-Andy's details from his "About Me" deck are already in **`js/config.js`**:
+Andy's details from his "About Me" deck and the EdgeProp Singapore feature (November 2026) are already in **`js/config.js`**. The asset progression case study is written directly in `index.html`, in the `#asset-progression` section.
 
 | Setting | What it holds |
 | --- | --- |
 | `agent.name`, `title`, `agency`, `agencyLicence`, `licence` | Name, PropNex, the agency's CEA licence and Andy's CEA registration. They appear in the hero, on the contact card and in the footer, as CEA's advertising guidelines require |
 | `agent.photo`, `agent.aboutPhoto` | Portraits for the contact card and About. These are cut-outs taken from the deck; higher-resolution originals will look sharper |
 | `agent.bio`, `motto`, `vision`, `quote`, `specialties` | The About section |
+| `agent.since`, `agent.team` | The year Andy joined PropNex and his team, shown in About |
+| `press` | The In the press section: outlet, headline, link, date, author and quotes. Add new coverage at the top |
 | `trackRecord.awards`, `trackRecord.transactions` | The Track record section. Add a project as `['Name', count]` under its year, and the totals (43 transactions, 7 projects) update themselves |
 | `contact.phone` / `phoneDisplay` / `whatsapp` / `email` | Every Call, WhatsApp and Email button uses these |
 | `contact.hours` | Empty, so it's hidden. Add opening hours if you want them shown |

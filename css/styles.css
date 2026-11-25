@@ -934,3 +934,83 @@ button { font: inherit; color: inherit; }
 /* ---------- Portrait cut-outs (photos with a transparent background) ---------- */
 .agent-photo img { position: absolute; inset: 0; }
 .agent-photo img.cutout { top: var(--space-5); height: calc(100% - var(--space-5)); object-fit: cover; object-position: center top; }
+
+/* ---------- Asset progression journey ---------- */
+.journey-card { display: grid; gap: var(--space-5); padding: var(--space-6); }
+.journey {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  counter-reset: journey;
+}
+.journey li {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+}
+.journey li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * var(--space-4));
+  width: var(--space-4);
+  height: 2px;
+  background: var(--line-strong);
+}
+.journey li.is-next { background: transparent; border: 1px dashed var(--line-strong); }
+.journey-step {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-ink);
+}
+.journey li.is-next .journey-step { color: var(--accent-ink); }
+.journey-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.journey-outcome { font-size: 18px; line-height: 28px; }
+.journey-outcome strong { font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--brand-ink); }
+.journey-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-5); }
+.journey-foot .small { flex: 1 1 320px; max-width: 46em; }
+@media (max-width: 860px) {
+  .journey-card { padding: var(--space-5); }
+  .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .journey li:nth-child(2)::after { display: none; }
+}
+@media (max-width: 480px) {
+  .journey { grid-template-columns: 1fr; }
+  .journey li::after { display: none; }
+}
+
+/* ---------- In the press ---------- */
+.press-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+.press-card .btn { white-space: normal; height: auto; min-height: 44px; padding-top: 10px; padding-bottom: 10px; line-height: 20px; }
+.press-card { display: grid; gap: var(--space-4); justify-items: start; padding: var(--space-6); }
+.press-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2) var(--space-3); }
+.press-outlet { font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-ink); }
+.press-title { font-family: var(--font-display); font-size: 28px; line-height: 34px; font-weight: 500; letter-spacing: -0.01em; max-width: 30em; text-wrap: balance; }
+.press-title a { color: var(--ink); text-decoration: none; }
+.press-title a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.press-quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); width: 100%; padding: var(--space-4) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.press-quotes blockquote { margin: 0; font-size: 16px; line-height: 24px; color: var(--ink); }
+.press-quotes blockquote::before { content: "\201C"; font-family: var(--font-display); color: var(--accent-ink); }
+.press-quotes blockquote::after { content: "\201D"; font-family: var(--font-display); color: var(--accent-ink); }
+@media (max-width: 860px) {
+  .press-card { padding: var(--space-5); }
+  .press-quotes { grid-template-columns: 1fr; }
+  .press-title { font-size: 24px; line-height: 30px; }
+}

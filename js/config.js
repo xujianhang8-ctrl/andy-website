@@ -12,7 +12,7 @@ window.SITE_CONFIG = {
   agent: {
     name: 'Andy Ea',                       // Used in the logo and headings
     fullName: 'Andy Ea',
-    title: 'Property Advisor',
+    title: 'Associate Group Director',
     agency: 'PropNex Realty Pte Ltd',
     agencyShort: 'PropNex',
     agencyLicence: 'CEA Licence L3008022J',  // The agency's estate agent licence number
@@ -21,17 +21,35 @@ window.SITE_CONFIG = {
     aboutPhoto: 'images/andy-full.webp',     // About section portrait
     photoCutout: true,                       // true for photos with a transparent background
     languages: ['English'],
-    specialties: ['Executive Condos', 'HDB flats', 'Private property', 'Commercial', 'Industrial'],
+    specialties: ['Asset progression', 'Executive Condos', 'HDB upgrading', 'Private property', 'Commercial', 'Industrial'],
+    since: '2023',                           // Year joined the agency
+    team: 'Leads a team of six agents',
     motto: 'Maximising Value, Exceeding Expectations.',
     vision: 'Creating Lifelong Connections, One Home at a Time.',
     quote: 'A great property agent doesn’t just sell houses — they help people find homes. It’s about trust, understanding and turning dreams into reality.',
     bio: [
-      'I’m a property advisor with PropNex, Singapore’s largest real estate agency, and I’m ranked in the top 0.1% of its 14,000 agents. I help clients buy and sell HDB flats, private homes, Executive Condos, and commercial and industrial property.',
-      'My own story started with an EC: it was the first home my wife and I bought. Since then I’ve invested in three commercial and industrial units and three residential properties overseas, and bought our landed home at 35. I know how it feels to be on your side of the table.',
-      'For sellers, I’ve achieved record prices. For buyers, I’ve secured homes below valuation. In every meeting I present live on my iPad with PropNex’s Investment Suite, so you can see the data, not just hear me talk about it.',
-      'At home I have three boys and a dedicated wife, so I value work-life balance and do my best for every client. Outside work, you’ll often find me training for HYROX.'
+      'I’m an Associate Group Director at PropNex, Singapore’s largest real estate agency. Before real estate I worked in sales and business development. I joined PropNex in 2023, reached the firm’s Millionaire recognition in 2025, and I’m now ranked in the top 0.1% of its 14,000 agents.',
+      'Property was my own wealth-building strategy first. Years before I became an agent, my then-girlfriend, now my wife, and I put almost all our savings into an Executive Condo. When we sold it, we made close to $1 million in gains, which let us upgrade to a landed home, bought when I was 35. I’ve since invested in three commercial and industrial units and three residential properties overseas.',
+      'That’s why I specialise in asset progression: helping HDB upgraders and EC owners use the home they already own to fund their next purchase or investment. I start by understanding your finances and long-term goals before recommending anything, and I only advise what I’m convinced of myself. For sellers, I’ve achieved record prices. For buyers, I’ve secured homes below valuation.',
+      'Earlier this year I started my own team, now six agents who share the same values. And as a father of three boys, I keep 6pm to 8pm for family dinners every day, avoid viewings on weekend evenings, and make time for an hour of exercise, including training for HYROX.'
     ]
   },
+
+  // Press coverage, shown in the "In the press" section (newest first)
+  press: [
+    {
+      outlet: 'EdgeProp Singapore',
+      title: 'From property investor to Millionaire realtor: How Andy Ea helps clients build wealth through real estate',
+      url: 'https://www.edgeprop.sg/property-news/property-investor-millionaire-realtor-how-andy-ea-helps-clients-build-wealth-through-real-estate',
+      date: '2026-11-13',
+      author: 'Deepa Chevi',
+      quotes: [
+        'Everyone has access to the same tools and data. Everyone can say the same thing. What matters is how you bring the message across.',
+        'When my wife and I bought our EC, we put almost all our savings into it. It was a big decision, but I had the conviction that Singapore property would appreciate over time.',
+        'I think it’s about being genuine in what you want to offer your clients. Ultimately, you want to show them that you have their best interests at heart.'
+      ]
+    }
+  ],
 
   // Awards and transactions, shown in the Track record section
   trackRecord: {
@@ -40,6 +58,7 @@ window.SITE_CONFIG = {
       { title: 'PropNex Millionaire 2025', detail: 'Over $1 million in sales commission within 10 months' },
       { title: 'PropNex Rising Millionaire 2025', detail: '' },
       { title: 'PropNex Top Transactor', detail: '' },
+      { title: 'Featured in EdgeProp Singapore, November 2026', detail: '“From property investor to Millionaire realtor”' },
       { title: 'Featured in PropNex Agency Magazine 2026', detail: '“Rising with resilience, reinvention and the power of the right environment”' }
     ],
     // Transactions by year: [project, number of transactions]
