@@ -1,0 +1,71 @@
+# Andy — Property Agent website
+
+A one-page website for a property agent: listings with filters and share links, services, a mortgage calculator, an about section, Google reviews, a contact form, a map, and a call/WhatsApp bar on phones. It's plain HTML, CSS and JavaScript. There's no build step and nothing to install, and it runs on any static host (GitHub Pages, Netlify, Cloudflare Pages).
+
+```
+index.html          the page
+css/styles.css      all styling (colours and sizes are the tokens at the top)
+js/config.js        ← your details: name, phone, Google links, area, currency
+js/listings.js      ← your properties
+js/main.js          page behaviour (no need to edit)
+fonts/              Newsreader + Figtree, self-hosted (SIL Open Font License)
+images/             favicon, your photo, listing photos
+```
+
+## 1. Make it yours (10 minutes)
+
+Open **`js/config.js`** and fill in:
+
+| Setting | What to put |
+| --- | --- |
+| `agent.name`, `fullName`, `agency`, `licence` | Shown in the logo, the contact card and the footer |
+| `agent.photo` | Save a portrait as `images/andy.jpg` and set `'images/andy.jpg'`. Without one, the page shows your initials |
+| `agent.bio` | One or two short paragraphs in your own words |
+| `contact.phone` / `phoneDisplay` / `whatsapp` / `email` | Every Call, WhatsApp and Email button uses these |
+| `contact.address` | Your office address, used on the map and for Google |
+| `area.name`, `area.neighbourhoods` | Used in the headline and the "Areas I cover" list |
+| `locale`, `currency`, `areaUnit` | e.g. `'en-GB'`, `'GBP'`, `'sq ft'` or `'en-SG'`, `'SGD'`, `'m²'` |
+
+Then open **`js/listings.js`**, replace the six sample homes with your own, and remove `sample: true` from each. Put photos in `images/listings/` and list them in each home's `images: [...]`.
+
+## 2. Link the website and your Google Business Profile
+
+The link has to go both ways: the website points to your profile, and the profile points to the website.
+
+**Website → Google profile** (in `js/config.js`, under `google`):
+
+1. **`profileUrl`**: search for your business on Google Maps, open it, click **Share**, then **Copy link** (looks like `https://maps.app.goo.gl/…`). Every "View on Google", "Read reviews" and "Directions" button uses it, and it's added to the page's structured data (`sameAs`) so Google knows the site and the profile are the same business.
+2. **`reviewUrl`**: in your Business Profile (search "my business" on Google while signed in), click **Ask for reviews** and copy the link (`https://g.page/r/…/review`). The "Leave a review" buttons use it.
+3. **`mapsQuery`**: your business name and city exactly as they appear on Google. It drives the map embed.
+
+Until `profileUrl` is set, the Google buttons fall back to a Google Maps search for `mapsQuery`, so nothing on the page is a dead link.
+
+**Google profile → website:** once the site is live, open your Business Profile, choose **Edit profile**, then **Contact**, then **Website**, paste the site address and save. Also set `siteUrl` in `config.js` to the same address.
+
+**Optional: live star rating and latest reviews on the page.** Set `placeId` (find it with Google's [Place ID Finder](https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder)) and `mapsApiKey`, a Google Maps Platform key with the *Maps JavaScript API*, *Places API (New)* and *Maps Embed API* enabled. Restrict the key to your website's address under *Application restrictions → Websites*. The reviews section then shows your rating and three recent reviews, with Google attribution. Without a key, the section shows buttons to your profile instead.
+
+**Optional: Google Search Console.** Add the site at [search.google.com/search-console](https://search.google.com/search-console), choose the *HTML tag* method, and paste the tag where `index.html` has the commented-out `google-site-verification` line.
+
+## 3. Receive enquiries
+
+With no extra setup, the contact form opens the visitor's email app with their message already written, addressed to `contact.email`.
+
+To receive messages without the visitor's email app opening, create a free form at [Formspree](https://formspree.io) (or Basin or Getform), and paste its endpoint into `form.endpoint` in `config.js`.
+
+## 4. Put it online
+
+**GitHub Pages (free):** in this repository, go to **Settings → Pages**, then under *Build and deployment* choose **Deploy from a branch**, pick the branch and `/ (root)`, and save. The site appears at `https://<your-username>.github.io/andy-website/` within a minute or two. To use your own domain (e.g. `andyproperty.com`), enter it under **Custom domain** and follow GitHub's DNS instructions.
+
+**Netlify / Cloudflare Pages:** connect this repository. There's no build command, and the publish directory is the root.
+
+To preview on your computer, run this inside the folder and open `http://localhost:8000`:
+
+```bash
+python3 -m http.server 8000
+```
+
+## Notes
+
+- Share a listing with `yoursite.com/#home-<listing id>`. The link opens that home directly, and each listing has a **Copy link** button.
+- The site follows the visitor's light or dark mode setting.
+- Colours, type and spacing are tokens at the top of `css/styles.css`. Change them there and the whole site follows.

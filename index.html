@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andy — Property Agent | Buy, sell and rent with a local agent</title>
+  <meta name="description" content="Andy is a local property agent. Homes for sale and rent, free valuations, and honest advice from first viewing to keys in hand.">
+  <meta name="theme-color" content="#1d5a47" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111714" media="(prefers-color-scheme: dark)">
+  <!-- Google Search Console: paste your verification tag here, then remove these comment marks.
+  <meta name="google-site-verification" content="PASTE-YOUR-CODE">
+  -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Andy — Property Agent">
+  <meta property="og:description" content="Homes for sale and rent, free valuations, and honest advice from a local agent.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Figtree-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Newsreader-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/listings.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Icon sprite: 24px, 1.75 stroke, round caps. Use as <svg class="icon"><use href="#i-name"/></svg> -->
+  <svg xmlns="http://www.w3.org/2000/svg" hidden>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h3.2l1.6 4.3-2.1 1.3a11 11 0 0 0 6.7 6.7l1.3-2.1L20 15.8V19a1.5 1.5 0 0 1-1.6 1.5A16.5 16.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.5z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V6M3 14h18v4M21 14v-2.5A2.5 2.5 0 0 0 18.5 9H11v5"/><circle cx="7" cy="11" r="1.8"/></symbol>
+    <symbol id="i-bath" viewBox="0 0 24 24"><path d="M4 12h16v2.5A4.5 4.5 0 0 1 15.5 19h-7A4.5 4.5 0 0 1 4 14.5V12zM6 12V6.5A2.5 2.5 0 0 1 8.5 4c1.2 0 2.2.8 2.4 2M7.5 19l-1 2M16.5 19l1 2"/></symbol>
+    <symbol id="i-area" viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9L12 3.5z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20H4v-9.5z"/><path d="M10 20v-5.5h4V20"/></symbol>
+    <symbol id="i-sign" viewBox="0 0 24 24"><path d="M6 21V3M6 5h12l-2.5 3.5L18 12H6"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16 7l2.5 2.5M14 9l2 2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 15.5l3.5-4.5 3 3L20 7.5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="m9 4-5 2v14l5-2 6 2 5-2V4l-5 2-6-2zM9 4v14M15 6v14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="wordmark" href="#top" aria-label="Home">
+        <span class="wordmark-name" data-cfg="agent.name">Andy</span>
+        <span class="wordmark-role" data-cfg="agent.title">Property Agent</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#listings">Listings</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#calculator">Calculator</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="nav-extra"><a data-link="google" target="_blank" rel="noopener">My Google profile</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-quiet btn-sm hide-md" data-link="google" target="_blank" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>View on Google</span>
+        </a>
+        <a class="btn btn-primary btn-sm hide-sm" data-link="phone">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span>Call me</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="visually-hidden">Menu</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span data-cfg="agent.title">Property Agent</span> · <span data-cfg="area.name">Your City</span></p>
+          <h1 class="display-xl" id="hero-title">Buy, sell or rent with someone who knows the street.</h1>
+          <p class="body-lg muted">
+            I'm <span data-cfg="agent.name">Andy</span>, a property agent in <span data-cfg="area.name">Your City</span>.
+            I give honest prices, answer my phone, and stay with you from the first viewing to the day you get the keys.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-lg" href="#listings">See current listings</a>
+            <a class="btn btn-secondary btn-lg" href="#contact" data-interest="Free valuation">Get a free valuation</a>
+          </div>
+          <a class="google-chip" data-link="google" target="_blank" rel="noopener" id="google-chip">
+            <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+            <span data-google-chip>Find me on Google — reviews, directions and hours</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+          </a>
+        </div>
+
+        <aside class="card agent-card" aria-label="Contact card">
+          <div class="agent-photo" data-agent-photo>
+            <span class="agent-initials" data-agent-initials aria-hidden="true">A</span>
+          </div>
+          <div class="agent-card-body">
+            <p class="title" data-cfg="agent.fullName">Andy</p>
+            <p class="small muted"><span data-cfg="agent.title">Property Agent</span><span data-cfg-sep="agent.agency">, </span><span data-cfg="agent.agency"></span></p>
+            <p class="small muted" data-cfg="agent.licence"></p>
+            <div class="agent-card-actions">
+              <a class="icon-btn" data-link="phone" aria-label="Call"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></a>
+              <a class="icon-btn" data-link="whatsapp" target="_blank" rel="noopener" aria-label="Message on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></a>
+              <a class="icon-btn" data-link="email" aria-label="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a>
+              <a class="icon-btn" data-link="google" target="_blank" rel="noopener" aria-label="Google profile"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container search-bar">
+        <form class="card search-bar-inner" id="hero-search" aria-label="Search listings">
+          <fieldset class="segmented">
+            <legend>Looking to</legend>
+            <label><input type="radio" name="mode" value="sale" checked><span>Buy</span></label>
+            <label><input type="radio" name="mode" value="rent"><span>Rent</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="hs-type">Property type</label>
+            <select class="select" id="hs-type" name="type">
+              <option value="">Any type</option>
+              <option>House</option>
+              <option>Apartment</option>
+              <option>Townhouse</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hs-beds">Bedrooms</label>
+            <select class="select" id="hs-beds" name="beds">
+              <option value="0">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+            </select>
+          </div>
+          <button class="btn btn-brand btn-lg" type="submit">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span>Search homes</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Listings -->
+    <section class="section" id="listings" aria-labelledby="listings-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Listings</p>
+            <h2 class="display-lg" id="listings-title">Homes I'm selling and letting</h2>
+          </div>
+          <p class="muted" id="listing-count" aria-live="polite"></p>
+        </div>
+
+        <form class="filters" id="filters" aria-label="Filter listings">
+          <fieldset class="segmented">
+            <legend>Show</legend>
+            <label><input type="radio" name="mode" value="all" checked><span>All</span></label>
+            <label><input type="radio" name="mode" value="sale"><span>For sale</span></label>
+            <label><input type="radio" name="mode" value="rent"><span>For rent</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="f-type">Type</label>
+            <select class="select" id="f-type" name="type">
+              <option value="">Any type</option>
+              <option>House</option>
+              <option>Apartment</option>
+              <option>Townhouse</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-beds">Bedrooms</label>
+            <select class="select" id="f-beds" name="beds">
+              <option value="0">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+            </select>
+          </div>
+          <div class="field field-sort">
+            <label for="f-sort">Sort by</label>
+            <select class="select" id="f-sort" name="sort">
+              <option value="newest">Newest first</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="listing-grid" id="listing-grid"></div>
+
+        <div class="card empty-state" id="listing-empty" hidden>
+          <p class="title">No homes match those filters</p>
+          <p class="muted">Try fewer filters, or tell me what you're after and I'll keep an eye out.</p>
+          <button class="btn btn-secondary" type="button" id="clear-filters">Clear filters</button>
+        </div>
+
+        <p class="muted listings-note">
+          Not seeing the right place? Plenty of homes sell before they're advertised.
+          <a href="#contact" data-interest="Buying">Tell me what you're looking for</a> and I'll call you first.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section-alt" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Services</p>
+            <h2 class="display-lg" id="services-title">What I can do for you</h2>
+          </div>
+        </div>
+        <div class="service-grid">
+          <article class="card service-card">
+            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-sign"/></svg></span>
+            <h3 class="title">Sell for the right price</h3>
+            <p class="muted">A valuation based on what's actually sold nearby, proper photos, and viewings I attend myself. You get feedback after every one.</p>
+            <a href="#contact" data-interest="Selling">Talk about selling</a>
+          </article>
+          <article class="card service-card">
+            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span>
+            <h3 class="title">Find a home that fits</h3>
+            <p class="muted">Tell me your budget and must-haves. I'll shortlist homes, including ones not yet advertised, and help you negotiate.</p>
+            <a href="#contact" data-interest="Buying">Start your search</a>
+          </article>
+          <article class="card service-card">
+            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-key"/></svg></span>
+            <h3 class="title">Rent or let, minus the hassle</h3>
+            <p class="muted">Tenants get viewings that fit around work. Landlords get referenced tenants, clear agreements and a proper check-in report.</p>
+            <a href="#contact" data-interest="Renting">Ask about renting</a>
+          </article>
+          <article class="card service-card">
+            <span class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <h3 class="title">Free valuation, no pressure</h3>
+            <p class="muted">Curious what your home is worth? I'll visit, compare recent sales and give you a written figure. No obligation to list.</p>
+            <a href="#contact" data-interest="Free valuation">Book a valuation</a>
+          </article>
+        </div>
+
+        <ol class="steps" aria-label="How selling with me works">
+          <li>
+            <h3>Valuation visit</h3>
+            <p class="muted small">We walk through the home together and agree a realistic asking price.</p>
+          </li>
+          <li>
+            <h3>Prepare and list</h3>
+            <p class="muted small">Photos, a floor plan and a listing that describes the home accurately.</p>
+          </li>
+          <li>
+            <h3>Viewings and offers</h3>
+            <p class="muted small">I host viewings, check buyers can proceed, and bring every offer to you in writing.</p>
+          </li>
+          <li>
+            <h3>Through to completion</h3>
+            <p class="muted small">I chase lawyers, lenders and buyers so the sale doesn't stall.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="section" id="calculator" aria-labelledby="calc-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Mortgage calculator</p>
+            <h2 class="display-lg" id="calc-title">What would the monthly repayment be?</h2>
+          </div>
+        </div>
+        <form class="card calc" id="calc-form" aria-label="Mortgage calculator">
+          <div class="calc-inputs">
+            <div class="field field-wide">
+              <label for="c-price">Property price</label>
+              <div class="input-affix">
+                <input class="input" id="c-price" name="price" type="number" inputmode="numeric" min="0" step="1000" value="500000">
+                <span class="affix" data-currency-code>USD</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-deposit">Down payment</label>
+              <div class="input-affix">
+                <input class="input" id="c-deposit" name="deposit" type="number" inputmode="decimal" min="0" max="100" step="1" value="20">
+                <span class="affix">%</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="c-rate">Interest rate</label>
+              <div class="input-affix">
+                <input class="input" id="c-rate" name="rate" type="number" inputmode="decimal" min="0" max="25" step="0.05" value="4.5">
+                <span class="affix">% / yr</span>
+              </div>
+            </div>
+            <div class="field field-wide">
+              <label for="c-years">Loan term</label>
+              <select class="select" id="c-years" name="years">
+                <option value="10">10 years</option>
+                <option value="15">15 years</option>
+                <option value="20">20 years</option>
+                <option value="25" selected>25 years</option>
+                <option value="30">30 years</option>
+                <option value="35">35 years</option>
+              </select>
+            </div>
+          </div>
+          <div class="calc-result" aria-live="polite">
+            <div>
+              <p class="label">Estimated monthly repayment</p>
+              <p class="calc-monthly" id="c-monthly">—</p>
+            </div>
+            <dl class="calc-breakdown">
+              <div><dt>Down payment</dt><dd id="c-out-deposit">—</dd></div>
+              <div><dt>Loan amount</dt><dd id="c-out-loan">—</dd></div>
+              <div><dt>Total interest</dt><dd id="c-out-interest">—</dd></div>
+            </dl>
+            <a class="btn" href="#contact" data-interest="Buying">Talk it through with me</a>
+          </div>
+        </form>
+        <p class="small muted calc-note">An estimate only, for a repayment loan at a fixed rate. Your lender will confirm the real figures, fees and what you can borrow.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section section-alt" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="card about-photo">
+          <div class="agent-photo" data-agent-photo>
+            <span class="agent-initials" data-agent-initials aria-hidden="true">A</span>
+          </div>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About me</p>
+          <h2 class="display-lg" id="about-title">Hi, I'm <span data-cfg="agent.name">Andy</span>.</h2>
+          <div class="bio body-lg" id="about-bio"></div>
+          <dl class="about-facts">
+            <div data-cfg-group="agent.agency"><dt>Agency</dt><dd data-cfg="agent.agency"></dd></div>
+            <div data-cfg-group="agent.licence"><dt>Registration</dt><dd data-cfg="agent.licence"></dd></div>
+            <div data-cfg-group="agent.languages"><dt>Languages</dt><dd id="about-languages"></dd></div>
+            <div data-cfg-group="contact.hours"><dt>Hours</dt><dd data-cfg="contact.hours"></dd></div>
+            <div class="field-wide" style="grid-column: 1 / -1" data-cfg-group="area.neighbourhoods">
+              <dt>Areas I cover</dt>
+              <dd><ul class="chips" id="about-areas"></ul></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews (linked to the Google Business Profile) -->
+    <section class="section" id="reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Reviews</p>
+            <h2 class="display-lg" id="reviews-title">What clients say on Google</h2>
+          </div>
+        </div>
+
+        <div class="card reviews-panel">
+          <div id="reviews-summary">
+            <p class="title">My reviews live on my Google profile.</p>
+            <p class="muted">Clients post them there directly, so you can read every one, unfiltered, alongside my hours and directions.</p>
+          </div>
+          <div class="actions">
+            <a class="btn btn-brand" data-link="google" target="_blank" rel="noopener">
+              <span>Read reviews on Google</span><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+            </a>
+            <a class="btn btn-secondary" data-link="google-review" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><span>Leave a review</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="review-grid" id="review-grid" hidden></div>
+        <p class="small muted review-attribution" id="review-attribution" hidden>Reviews and rating from Google.</p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 class="display-lg" id="contact-title">Let's talk about your move</h2>
+            <p class="muted">Send a message and I'll reply the same working day. Prefer to talk? Call or message me directly.</p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <form class="card contact-form" id="contact-form" novalidate>
+            <div class="field">
+              <label for="cf-name">Your name</label>
+              <input class="input" id="cf-name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="cf-phone">Phone <span class="muted">(optional)</span></label>
+              <input class="input" id="cf-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input class="input" id="cf-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="cf-interest">I'm interested in</label>
+              <select class="select" id="cf-interest" name="interest">
+                <option>Buying</option>
+                <option>Selling</option>
+                <option>Renting</option>
+                <option>Letting my property</option>
+                <option>Free valuation</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <label for="cf-message">Message</label>
+              <textarea class="textarea" id="cf-message" name="message" required placeholder="What are you looking for, or what would you like to know?"></textarea>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="cf-company">Leave this empty</label>
+              <input id="cf-company" name="company" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-footer">
+              <button class="btn btn-primary btn-lg" type="submit">
+                <span>Send message</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </button>
+              <p class="form-status" id="form-status" role="status"></p>
+            </div>
+            <p class="small muted field-wide">I'll only use your details to reply to this enquiry.</p>
+          </form>
+
+          <div class="contact-side">
+            <ul class="card contact-list">
+              <li data-cfg-group="contact.phone">
+                <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                <div><span class="label">Call</span><a data-link="phone" data-cfg="contact.phoneDisplay"></a></div>
+              </li>
+              <li data-cfg-group="contact.whatsapp">
+                <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+                <div><span class="label">WhatsApp</span><a data-link="whatsapp" target="_blank" rel="noopener">Send me a message</a></div>
+              </li>
+              <li data-cfg-group="contact.email">
+                <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                <div><span class="label">Email</span><a data-link="email" data-cfg="contact.email"></a></div>
+              </li>
+              <li data-cfg-group="contact.hours">
+                <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>
+                <div><span class="label">Hours</span><span data-cfg="contact.hours"></span></div>
+              </li>
+              <li>
+                <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+                <div><span class="label">Google</span><a data-link="google" target="_blank" rel="noopener">My Google Business Profile</a></div>
+              </li>
+            </ul>
+
+            <div class="card map-card">
+              <iframe id="map-frame" title="Map showing my office location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="map-foot">
+                <span class="muted" data-address></span>
+                <a data-link="directions" target="_blank" rel="noopener">Directions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="wordmark" href="#top">
+            <span class="wordmark-name" data-cfg="agent.name">Andy</span>
+            <span class="wordmark-role" data-cfg="agent.title">Property Agent</span>
+          </a>
+          <p class="small muted"><span data-cfg="agent.agency"></span><span data-cfg-sep="agent.licence"> · </span><span data-cfg="agent.licence"></span></p>
+          <p class="small muted" data-address></p>
+        </div>
+        <div>
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="#listings">Listings</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#calculator">Mortgage calculator</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Get in touch</h2>
+          <ul>
+            <li><a data-link="phone" data-cfg="contact.phoneDisplay"></a></li>
+            <li><a data-link="email" data-cfg="contact.email"></a></li>
+            <li><a data-link="google" target="_blank" rel="noopener">Google profile</a></li>
+            <li><a data-link="google-review" target="_blank" rel="noopener">Leave a Google review</a></li>
+            <li><a data-link="facebook" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a data-link="instagram" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> <span data-cfg="agent.fullName">Andy</span>. All rights reserved.</p>
+        <p>Listing details are a guide only and do not form part of any contract.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" aria-label="Quick contact">
+    <a class="btn btn-primary" data-link="phone"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span>Call</span></a>
+    <a class="btn btn-secondary" data-link="whatsapp" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span></a>
+  </div>
+
+  <dialog class="dialog" id="listing-dialog" aria-labelledby="dlg-title">
+    <button class="icon-btn dialog-close" type="button" data-close aria-label="Close">
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <div id="dialog-content"></div>
+  </dialog>
+</body>
+</html>
